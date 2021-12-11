@@ -1,27 +1,19 @@
 import React from "react";
-import { useEthers, useEtherBalance } from "@usedapp/core";
-import { formatEther } from "@ethersproject/units";
 
-import "./App.css";
+import AccountDetails from "./AccountDetails";
+import Header from "./Header";
+import VaultDetails from "./VaultDetails";
+import VaultControls from "./VaultControls";
 
 const App = () => {
-  const { activateBrowserWallet, account, deactivate } = useEthers();
-  const etherBalance = useEtherBalance(account);
-
   return (
-    <div>
-      {!account && (
-        <div>
-          <button onClick={() => activateBrowserWallet()}>Connect</button>
-        </div>
-      )}
-      {account && (
-        <div>
-          <button onClick={() => deactivate()}>Disconnect</button>
-        </div>
-      )}
-      {account && <p>Account: {account}</p>}
-      {etherBalance && <p>Balance: {formatEther(etherBalance)}</p>}
+    <div className="bg-gradient-to-b from-yellow-100 to-red-50 h-full">
+      <Header />
+      <div className="flex flex-col h-full w-1/2 mx-auto my-0">
+        <AccountDetails />
+        <VaultDetails />
+        <VaultControls />
+      </div>
     </div>
   );
 };

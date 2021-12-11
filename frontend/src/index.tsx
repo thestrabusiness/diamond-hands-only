@@ -8,7 +8,13 @@ import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <DAppProvider config={{}}>
+    <DAppProvider
+      config={{
+        multicallAddresses: {
+          "31337": "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+        },
+      }}
+    >
       <App />
     </DAppProvider>
   </React.StrictMode>,
