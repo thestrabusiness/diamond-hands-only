@@ -4,33 +4,42 @@ pragma solidity ^0.8.0;
 import "hardhat/console.sol";
 
 contract HodlVault {
-    struct Holding {
-        uint256 amount;
-        uint256 unlockTime;
-    }
+    mapping(address => uint256) public holdings;
+    mapping(address => uint256) public unlockTimes;
 
-    mapping(address => Holding) private holdings;
+   struct HoldingDetails {
+       uint256 amount;
+       uint256 unlockTime;
+   }
 
-    function storeHolding(uint256 _holdingPeriodInDays, uint256 _amount) public {
+    function storeHoldings(uint256 _holdingPeriodInDays) public payable {
+        console.log("Sender trying to store holdings %s", msg.sender);
+        console.log("Sender is trying to store: %s", msg.value);
+        console.log("Sender wants to lock up holdings for %s days", _holdingPeriodInDays);
+
+        require(msg.value > 0, "You need to send ether to store");
+        require(holdings[msg.sender] == 0, "Can't add new holdings");
         uint256 _unlockTime = block.timestamp + (_holdingPeriodInDays * 1 days);
-        Holding storage newHolding = holdings[msg.sender];
-        newHolding.amount = _amount;
-        newHolding.unlockTime = _unlockTime;
+        unlockTimes[msg.sender] = _unlockTime;
+        holdings[msg.sender] = msg.value;
     }
 
-    function showUnlockTime() public view returns(int256){
-        Holding memory holding = holdings[msg.sender];
-        return (int(holding.unlockTime) - int(block.timestamp)) / 1 days;
-    }
+    function unlockHoldings() public payable {
+        uint256 unlockTime = unlockTimes[tx.origin];
+        require(block.timestamp >= unlockTime, "You can't withdraw yet");
 
-    function unlockHolding() public payable {
-        Holding storage holding = holdings[msg.sender];
-        require(holding.amount > 0, "You don't have any holdings");
-        require(block.timestamp >= holding.unlockTime, "You can't withdraw yet");
+        uint256 heldAmount = holdings[tx.origin];
+        require(heldAmount > 0, "You don't have any holdings");
 
-        uint256 amountToSend = holding.amount;
-        holding.amount = 0;
-        (bool success, ) = msg.sender.call{value: amountToSend}("");
+        holdings[tx.origin] = 0;
+        (bool success, ) = tx.origin.call{value: heldAmount}("");
         require(success, "Transfer failed.");
+    }
+
+    function getVaultDetails() public view returns(HoldingDetails memory) {
+        console.log("Sender trying to view holdings %s", tx.origin);
+        console.log("Sender's current holdings: %s", holdings[tx.origin]);
+        console.log("Sender's unlock time: %s", unlockTimes[tx.origin]);
+        return HoldingDetails(holdings[tx.origin], unlockTimes[tx.origin]);
     }
 }
