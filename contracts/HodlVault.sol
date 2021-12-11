@@ -24,16 +24,16 @@ contract HodlVault {
         holdings[msg.sender] = msg.value;
     }
 
-    function unlockHoldings() public payable {
-        uint256 unlockTime = unlockTimes[tx.origin];
+    function unlockHoldings() public {
+        uint256 unlockTime = unlockTimes[msg.sender];
         require(block.timestamp >= unlockTime, "You can't withdraw yet");
 
-        uint256 heldAmount = holdings[tx.origin];
+        uint256 heldAmount = holdings[msg.sender];
         require(heldAmount > 0, "You don't have any holdings");
 
-        holdings[tx.origin] = 0;
-        unlockTimes[tx.origin] = 0;
-        (bool success, ) = tx.origin.call{value: heldAmount}("");
+        holdings[msg.sender] = 0;
+        unlockTimes[msg.sender] = 0;
+        (bool success, ) = msg.sender.call{value: heldAmount}("");
         require(success, "Transfer failed.");
     }
 
