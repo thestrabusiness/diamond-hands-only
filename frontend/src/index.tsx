@@ -11,7 +11,7 @@ ReactDOM.render(
     <DAppProvider
       config={{
         multicallAddresses: {
-          "31337": "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+          "31337": process.env.REACT_APP_MULTICALL_ADDRESS || "",
         },
       }}
     >

@@ -1,6 +1,7 @@
 {
   "name": "hardhat-project",
   "scripts": {
+    "start": "hardhat run ./scripts/node.ts",
     "deploy": "hardhat run ./scripts/deploy.ts --network localhost",
     "compile": "hardhat compile"
   },
@@ -37,6 +38,7 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "@rollup/plugin-json": "^4.1.0"
+    "@rollup/plugin-json": "^4.1.0",
+    "@usedapp/core": "^0.7.0"
   }
 }
