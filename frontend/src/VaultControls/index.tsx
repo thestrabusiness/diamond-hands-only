@@ -1,5 +1,4 @@
 import React from "react";
-import { ethers } from "ethers";
 import { useEthers } from "@usedapp/core";
 
 import { useGetVaultDetails } from "../hooks";
@@ -9,20 +8,14 @@ import Unlock from "./Unlock";
 const VaultControls = () => {
   const { account } = useEthers();
   const currentTime = (new Date().getTime() / 1000).toFixed(0);
-  let unlockTime: ethers.BigNumber;
-  let storedAmount: ethers.BigNumber;
-  let vaultDetails = useGetVaultDetails();
-
-  if (vaultDetails) {
-    [storedAmount, unlockTime] = vaultDetails;
-  }
+  let { balance, unlockTime } = useGetVaultDetails();
 
   const Controls = () => {
     if (!account) {
       return null;
     }
 
-    if (storedAmount && storedAmount.eq(0)) {
+    if (balance && balance.eq(0)) {
       return <Store />;
     }
 
