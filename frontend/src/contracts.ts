@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import { Contract } from "@ethersproject/contracts";
 import hodlVaultJson from "./HodlVault.json";
 
-const hodlVaultContractAddress = "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853";
+const hodlVaultContractAddress = "0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0";
 const hodlVaultContractInterface = new ethers.utils.Interface(
   hodlVaultJson.abi
 );

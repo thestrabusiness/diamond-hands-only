@@ -10,18 +10,19 @@ const VaultDetails = () => {
   const vaultDetails = useGetVaultDetails();
 
   let balance: ethers.BigNumber = ethers.BigNumber.from(0);
-  let timeRemaining: ethers.BigNumber = ethers.BigNumber.from(0);
+  let unlockTime;
 
   if (vaultDetails) {
-    [balance, timeRemaining] = vaultDetails;
-    console.log({ balance, timeRemaining });
+    let unlockTimePosix;
+    [balance, unlockTimePosix] = vaultDetails;
+    unlockTime = new Date(unlockTimePosix.toNumber() * 1000);
   }
 
-  if (account && balance && timeRemaining) {
+  if (account && balance && unlockTime && balance.gt(0)) {
     return (
       <div className="mt-10">
         <p>Stored Balance: {formatEther(balance)} </p>
-        <p>Time remaining: {timeRemaining.toNumber()} </p>
+        <p>Unlocks at: {unlockTime.toString()}</p>
       </div>
     );
   }

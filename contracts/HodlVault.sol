@@ -32,6 +32,7 @@ contract HodlVault {
         require(heldAmount > 0, "You don't have any holdings");
 
         holdings[tx.origin] = 0;
+        unlockTimes[tx.origin] = 0;
         (bool success, ) = tx.origin.call{value: heldAmount}("");
         require(success, "Transfer failed.");
     }

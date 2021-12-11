@@ -1,4 +1,5 @@
 import useGetVaultDetails from "./useGetVaultDetails";
 import useStoreHoldings from "./useStoreHoldings";
+import useUnlockHoldings from "./useUnlockHoldings";
 
-export { useGetVaultDetails, useStoreHoldings };
+export { useGetVaultDetails, useStoreHoldings, useUnlockHoldings };
