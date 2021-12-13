@@ -5,6 +5,7 @@
 // Runtime Environment's members available in the global scope.
 import { ethers } from "hardhat";
 import setEnvValue from "./helpers/setEnvValue";
+import * as fs from "fs";
 
 const main = async () => {
   // Hardhat always runs the compile task when running scripts with its command
@@ -22,6 +23,10 @@ const main = async () => {
 
   console.log("HodlVault deployed to:", hodlVault.address);
   setEnvValue("REACT_APP_VAULT_CONTRACT_ADDRESS", hodlVault.address);
+  fs.copyFileSync(
+    "./artifacts/contracts/HodlVault.sol/HodlVault.json",
+    "./frontend/src/HodlVault.json"
+  );
 };
 
 // We recommend this pattern to be able to use async/await everywhere
