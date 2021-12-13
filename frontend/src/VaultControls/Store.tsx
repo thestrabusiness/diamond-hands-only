@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ethers } from "ethers";
 
 import { useStoreHoldings } from "../hooks";
+import Button from "./Button";
 
 const Store = () => {
   const { state, send: storeHoldings } = useStoreHoldings();
@@ -43,9 +44,7 @@ const Store = () => {
           }}
         />
       </div>
-      <button onClick={handleOnPressStore} disabled={disabled}>
-        Store
-      </button>
+      <Button onClick={handleOnPressStore} disabled={disabled} label="Store" />
     </>
   );
 };

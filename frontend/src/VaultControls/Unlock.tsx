@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 import { useUnlockHoldings } from "../hooks";
 
@@ -12,9 +13,11 @@ const UnlockControls = () => {
   };
 
   return (
-    <button onClick={handleOnPressRetrieve} disabled={disabled}>
-      Retrieve
-    </button>
+    <Button
+      onClick={handleOnPressRetrieve}
+      disabled={disabled}
+      label="Retrieve"
+    />
   );
 };
 
