@@ -3,7 +3,7 @@
   "scripts": {
     "start": "hardhat run ./scripts/node.ts",
     "deploy": "hardhat run ./scripts/deploy.ts --network localhost",
-    "compile": "hardhat compile"
+    "compile": "hardhat run ./scripts/compile.ts"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.3",

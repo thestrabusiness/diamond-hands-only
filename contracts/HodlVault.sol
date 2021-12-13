@@ -12,7 +12,7 @@ contract HodlVault {
        uint256 unlockTime;
    }
 
-    function storeHoldings(uint256 _holdingPeriodInDays) public payable {
+    function storeHoldings(uint256 _holdingPeriodInDays) external payable {
         console.log("Sender trying to store holdings %s", msg.sender);
         console.log("Sender is trying to store: %s", msg.value);
         console.log("Sender wants to lock up holdings for %s days", _holdingPeriodInDays);
@@ -24,7 +24,7 @@ contract HodlVault {
         holdings[msg.sender] = msg.value;
     }
 
-    function unlockHoldings() public {
+    function unlockHoldings() external {
         uint256 unlockTime = unlockTimes[msg.sender];
         require(block.timestamp >= unlockTime, "You can't withdraw yet");
 
@@ -37,7 +37,7 @@ contract HodlVault {
         require(success, "Transfer failed.");
     }
 
-    function getVaultDetails(address sender) public view returns(HoldingDetails memory) {
+    function getVaultDetails(address sender) external view returns(HoldingDetails memory) {
         console.log("Sender trying to view holdings %s", sender);
         console.log("Sender's current holdings: %s", holdings[sender]);
         console.log("Sender's unlock time: %s", unlockTimes[sender]);

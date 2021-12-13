@@ -3,9 +3,10 @@
 //
 // When running the script with `npx hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
-import { ethers } from "hardhat";
-import setEnvValue from "./helpers/setEnvValue";
 import * as fs from "fs";
+import { ethers } from "hardhat";
+
+import setEnvValue from "./helpers/setEnvValue";
 
 const main = async () => {
   // Hardhat always runs the compile task when running scripts with its command
