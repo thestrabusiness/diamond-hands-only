@@ -6,7 +6,7 @@ import { useGetVaultDetails } from "./hooks";
 
 const VaultDetails = () => {
   const { account } = useEthers();
-  const { balance, unlockTime } = useGetVaultDetails();
+  const { balance, unlockTime } = useGetVaultDetails(account);
 
   if (account && balance && unlockTime && balance.gt(0)) {
     return (

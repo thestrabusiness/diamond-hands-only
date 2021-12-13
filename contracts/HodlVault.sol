@@ -37,10 +37,10 @@ contract HodlVault {
         require(success, "Transfer failed.");
     }
 
-    function getVaultDetails() public view returns(HoldingDetails memory) {
-        console.log("Sender trying to view holdings %s", tx.origin);
-        console.log("Sender's current holdings: %s", holdings[tx.origin]);
-        console.log("Sender's unlock time: %s", unlockTimes[tx.origin]);
-        return HoldingDetails(holdings[tx.origin], unlockTimes[tx.origin]);
+    function getVaultDetails(address sender) public view returns(HoldingDetails memory) {
+        console.log("Sender trying to view holdings %s", sender);
+        console.log("Sender's current holdings: %s", holdings[sender]);
+        console.log("Sender's unlock time: %s", unlockTimes[sender]);
+        return HoldingDetails(holdings[sender], unlockTimes[sender]);
     }
 }

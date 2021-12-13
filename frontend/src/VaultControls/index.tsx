@@ -8,7 +8,7 @@ import Unlock from "./Unlock";
 const VaultControls = () => {
   const { account } = useEthers();
   const currentTime = (new Date().getTime() / 1000).toFixed(0);
-  let { balance, unlockTime } = useGetVaultDetails();
+  let { balance, unlockTime } = useGetVaultDetails(account);
 
   const Controls = () => {
     if (!account) {

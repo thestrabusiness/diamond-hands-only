@@ -9,14 +9,16 @@ import {
 type GetVaultDetails = { balance: BigNumber; unlockTime: BigNumber };
 const getVaultDetailsDefault = [[BigNumber.from(0), BigNumber.from(0)]];
 
-const useGetVaultDetails = () => {
+const useGetVaultDetails = (account: string | null | undefined) => {
   const [[balance, unlockTime]] =
-    useContractCall({
-      abi: hodlVaultContractInterface,
-      address: hodlVaultContractAddress,
-      method: "getVaultDetails",
-      args: [],
-    }) ?? getVaultDetailsDefault;
+    useContractCall(
+      account && {
+        abi: hodlVaultContractInterface,
+        address: hodlVaultContractAddress,
+        method: "getVaultDetails",
+        args: [account],
+      }
+    ) ?? getVaultDetailsDefault;
 
   return { balance, unlockTime } as GetVaultDetails;
 };
