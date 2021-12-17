@@ -1,9 +1,9 @@
 import { useContractFunction } from "@usedapp/core";
-import { hodlVaultContract } from "../contracts";
+import { diamondVaultContract } from "../contracts";
 
 const useStoreHoldings = () => {
   const { state, send } = useContractFunction(
-    hodlVaultContract,
+    diamondVaultContract,
     "storeHoldings"
   );
   return { state, send };

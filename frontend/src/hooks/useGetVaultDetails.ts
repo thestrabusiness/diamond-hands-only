@@ -2,8 +2,8 @@ import { BigNumber } from "ethers";
 import { useContractCall } from "@usedapp/core";
 
 import {
-  hodlVaultContractAddress,
-  hodlVaultContractInterface,
+  diamondVaultContractAddress,
+  diamondVaultContractInterface,
 } from "../contracts";
 
 type GetVaultDetails = { balance: BigNumber; unlockTimePosix: BigNumber };
@@ -13,8 +13,8 @@ const useGetVaultDetails = (account: string | null | undefined) => {
   const [[balance, unlockTimePosix]] =
     useContractCall(
       account && {
-        abi: hodlVaultContractInterface,
-        address: hodlVaultContractAddress,
+        abi: diamondVaultContractInterface,
+        address: diamondVaultContractAddress,
         method: "getVaultDetails",
         args: [account],
       }

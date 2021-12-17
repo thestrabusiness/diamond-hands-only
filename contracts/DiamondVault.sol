@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
 
-contract HodlVault {
+contract DiamondVault {
     mapping(address => uint256) public holdings;
     mapping(address => uint256) public unlockTimes;
 

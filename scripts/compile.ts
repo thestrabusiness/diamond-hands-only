@@ -7,8 +7,8 @@ import setEnvValue from "./helpers/setEnvValue";
 const main = async () => {
   hre.run("compile");
   fs.copyFileSync(
-    "./artifacts/contracts/HodlVault.sol/HodlVault.json",
-    "./frontend/src/HodlVault.json"
+    "./artifacts/contracts/DiamondVault.sol/DiamondVault.json",
+    "./frontend/src/DiamondVault.json"
   );
 };
 

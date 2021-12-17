@@ -17,16 +17,16 @@ const main = async () => {
   // await hre.run('compile');
   //
   // We get the contract to deploy
-  const HodlVault = await ethers.getContractFactory("HodlVault");
-  const hodlVault = await HodlVault.deploy();
+  const DiamondVault = await ethers.getContractFactory("DiamondVault");
+  const diamondVault = await DiamondVault.deploy();
 
-  await hodlVault.deployed();
+  await diamondVault.deployed();
 
-  console.log("HodlVault deployed to:", hodlVault.address);
-  setEnvValue("REACT_APP_VAULT_CONTRACT_ADDRESS", hodlVault.address);
+  console.log("DiamondVault deployed to:", diamondVault.address);
+  setEnvValue("REACT_APP_VAULT_CONTRACT_ADDRESS", diamondVault.address);
   fs.copyFileSync(
-    "./artifacts/contracts/HodlVault.sol/HodlVault.json",
-    "./frontend/src/HodlVault.json"
+    "./artifacts/contracts/DiamondVault.sol/DiamondVault.json",
+    "./frontend/src/DiamondVault.json"
   );
 };
 
