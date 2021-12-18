@@ -6,11 +6,13 @@ import VaultControls from "./VaultControls";
 
 const App = () => {
   return (
-    <div className="bg-gradient-to-b from-yellow-100 to-red-50 h-full">
+    <div className="bg-gradient-to-b from-red-200 to-slate-800 h-full">
       <Header />
-      <div className="flex flex-col h-full w-1/2 mx-auto my-0">
-        <VaultDetails />
-        <VaultControls />
+      <div className="flex flex-col w-full max-w-md mx-auto my-0 pt-5">
+        <div className="border border-slate-800 rounded-lg py-5 bg-slate-800 filter drop-shadow-lg text-white">
+          <VaultDetails />
+          <VaultControls />
+        </div>
       </div>
     </div>
   );

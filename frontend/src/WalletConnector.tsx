@@ -16,9 +16,9 @@ const WalletConnector = () => {
       };
 
   return (
-    <div className="flex items-center">
+    <div className="text-slate-800 flex items-center">
       {account && <div className="pr-1 text-sm">{account.slice(0, 6)}...</div>}
-      <div className="text-xl self-center px-5 py-3 border border-gray-400 rounded-full">
+      <div className="text-xl self-center px-5 py-3 border border-slate-400 rounded-full">
         <button onClick={() => button.onClick()}>{button.label}</button>
       </div>
     </div>

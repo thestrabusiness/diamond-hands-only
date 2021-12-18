@@ -22,12 +22,12 @@ const VaultDetails = () => {
     ).toLocaleDateString("en-US", DATE_FORMAT);
 
     return (
-      <div className="text-center mt-10">
+      <div className="text-center bg-gray-600 rounded-lg mx-2 my-10 py-5">
         <div className="mb-5">
           <div className="text-3xl mb-2">Stored Balance</div>
           <div className="text-xl">{formatEther(balance)}</div>
         </div>
-        <div className="mb-5">
+        <div>
           <div className="text-3xl mb-2">Unlocks at</div>
           <div className="text-xl">{unlockTime}</div>
         </div>

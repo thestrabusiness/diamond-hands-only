@@ -7,12 +7,13 @@ interface ButtonProps {
 }
 
 const Button: FC<ButtonProps> = ({ onClick, label, disabled }) => {
+  const baseClass =
+    "text-md text-slate-800 self-center px-4 py-2 border border-slate-400 bg-red-100 rounded-full";
+  const disabledClass = disabled ? "text-slate-500 cursor-not-allowed" : "";
+  const className = `${baseClass} ${disabledClass}`;
+
   return (
-    <button
-      className="text-md self-center px-4 py-2 border border-gray-400 rounded-full"
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <button className={className} onClick={onClick} disabled={disabled}>
       {label}
     </button>
   );
