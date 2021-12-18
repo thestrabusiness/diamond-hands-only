@@ -15,10 +15,12 @@ const Button: FC<ButtonProps> = ({
   disabled,
 }) => {
   const baseClass =
-    "w-full text-md text-slate-800 self-center px-4 py-2 border border-slate-400 bg-red-300 rounded-lg";
+    "w-full text-md text-slate-800 self-center px-4 py-2 bg-red-300 rounded-lg";
   const disabledClass = disabled ? "text-slate-500 cursor-not-allowed" : "";
   const className = `${baseClass} ${disabledClass}`;
   const buttonLabel = transactionStatus === "Mining" ? "Pending..." : label;
+
+  console.log({ transactionStatus, buttonLabel });
 
   return (
     <button className={className} onClick={onClick} disabled={disabled}>
