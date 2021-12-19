@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction, useState } from "react";
+import React, { FC, useState } from "react";
 import { BigNumber, ethers } from "ethers";
 
 import NumberInput from "./NumberInput";
@@ -30,27 +30,34 @@ const Store: FC<StoreProps> = ({ currentBalance }) => {
   return (
     <div className="flex flex-col">
       <h2 className="text-center text-2xl mb-5 rounded-lg">Store your Ether</h2>
-      <div className="bg-gray-600 rounded-lg mx-2 mb-5 py-5">
+      <div className="mx-3">
         {currentBalance && (
-          <div className="text-center mb-5">
+          <div className="bg-slate-600 rounded-lg text-center py-2 mb-2">
             <div className="text-xl">Available Balance </div>
             <div>{formatEther(currentBalance)}</div>
           </div>
         )}
-        <NumberInput
+        <div className="bg-slate-600 rounded-lg py-5 mb-2">
+          <NumberInput
+            disabled={disabled}
+            value={amount}
+            onChange={setAmount}
+            label="Amount"
+          />
+          <NumberInput
+            disabled={disabled}
+            value={daysToHold}
+            onChange={setDaysToHold}
+            label="Days to hold"
+          />
+        </div>
+        <Button
+          onClick={handleOnPressStore}
           disabled={disabled}
-          value={amount}
-          onChange={setAmount}
-          label="Amount"
-        />
-        <NumberInput
-          disabled={disabled}
-          value={daysToHold}
-          onChange={setDaysToHold}
-          label="Days to hold"
+          transactionStatus={state.status}
+          label="Store"
         />
       </div>
-      <Button onClick={handleOnPressStore} disabled={disabled} label="Store" />
     </div>
   );
 };

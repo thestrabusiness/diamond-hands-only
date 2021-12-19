@@ -8,29 +8,27 @@ import Unlock from "./Unlock";
 const VaultControls = () => {
   const { account } = useEthers();
   const etherBalance = useEtherBalance(account);
-  let { balance, unlockTimePosix } = useGetVaultDetails(account);
+  const { balance, unlockTimePosix } = useGetVaultDetails(account);
+
+  console.log(balance);
 
   const Controls = () => {
-    if (!account) {
+    if (!account || !balance || !unlockTimePosix) {
       return null;
     }
 
-    if (balance && balance.eq(0)) {
+    if (balance.eq(0)) {
       return <Store currentBalance={etherBalance} />;
     }
 
-    if (unlockTimePosix) {
-      return <Unlock unlockTimePosix={unlockTimePosix} />;
+    if (balance.gt(0)) {
+      return <Unlock balance={balance} unlockTimePosix={unlockTimePosix} />;
     }
 
     return null;
   };
 
-  return (
-    <div>
-      <Controls />
-    </div>
-  );
+  return <Controls />;
 };
 
 export default VaultControls;
