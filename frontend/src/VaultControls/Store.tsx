@@ -16,7 +16,6 @@ const Store: FC<StoreProps> = ({ currentBalance }) => {
   const [daysToHold, setDaysToHold] = useState<number>(0);
 
   const disabled = state.status === "Mining";
-  const buttonLabel = disabled ? "Pending..." : "Store";
 
   const handleOnPressStore = () => {
     if (amount && daysToHold && amount > 0 && daysToHold > 0) {
@@ -51,11 +50,7 @@ const Store: FC<StoreProps> = ({ currentBalance }) => {
           label="Days to hold"
         />
       </div>
-      <Button
-        onClick={handleOnPressStore}
-        disabled={disabled}
-        label={buttonLabel}
-      />
+      <Button onClick={handleOnPressStore} disabled={disabled} label="Store" />
     </div>
   );
 };
