@@ -28,7 +28,13 @@ const VaultControls = () => {
     return null;
   };
 
-  return <Controls />;
+  return (
+    <div className="flex flex-col w-full max-w-md mx-auto my-0 pt-5">
+      <div className="border border-slate-800 rounded-lg py-5 bg-slate-800 filter drop-shadow-lg text-white">
+        <Controls />
+      </div>
+    </div>
+  );
 };
 
 export default VaultControls;
