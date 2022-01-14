@@ -1,5 +1,5 @@
 import React from "react";
-import { useEthers } from "@usedapp/core";
+import { useEtherBalance, useEthers } from "@usedapp/core";
 
 import { useGetVaultDetails } from "../hooks";
 import Store from "./Store";
@@ -7,8 +7,9 @@ import Unlock from "./Unlock";
 
 const VaultControls = () => {
   const { account } = useEthers();
+  const etherBalance = useEtherBalance(account);
   const currentTime = (new Date().getTime() / 1000).toFixed(0);
-  let { balance, unlockTime } = useGetVaultDetails(account);
+  let { balance, unlockTimePosix } = useGetVaultDetails(account);
 
   const Controls = () => {
     if (!account) {
@@ -16,10 +17,10 @@ const VaultControls = () => {
     }
 
     if (balance && balance.eq(0)) {
-      return <Store />;
+      return <Store currentBalance={etherBalance} />;
     }
 
-    if (unlockTime && unlockTime.lte(currentTime)) {
+    if (unlockTimePosix && unlockTimePosix.lte(currentTime)) {
       return <Unlock />;
     }
 

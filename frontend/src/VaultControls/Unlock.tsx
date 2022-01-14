@@ -13,11 +13,13 @@ const UnlockControls = () => {
   };
 
   return (
-    <Button
-      onClick={handleOnPressRetrieve}
-      disabled={disabled}
-      label="Retrieve"
-    />
+    <div className="flex flex-col">
+      <Button
+        onClick={handleOnPressRetrieve}
+        disabled={disabled}
+        label="Retrieve"
+      />
+    </div>
   );
 };
 

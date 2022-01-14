@@ -6,11 +6,11 @@ import {
   hodlVaultContractInterface,
 } from "../contracts";
 
-type GetVaultDetails = { balance: BigNumber; unlockTime: BigNumber };
+type GetVaultDetails = { balance: BigNumber; unlockTimePosix: BigNumber };
 const getVaultDetailsDefault = [[BigNumber.from(0), BigNumber.from(0)]];
 
 const useGetVaultDetails = (account: string | null | undefined) => {
-  const [[balance, unlockTime]] =
+  const [[balance, unlockTimePosix]] =
     useContractCall(
       account && {
         abi: hodlVaultContractInterface,
@@ -20,7 +20,7 @@ const useGetVaultDetails = (account: string | null | undefined) => {
       }
     ) ?? getVaultDetailsDefault;
 
-  return { balance, unlockTime } as GetVaultDetails;
+  return { balance, unlockTimePosix } as GetVaultDetails;
 };
 
 export default useGetVaultDetails;
